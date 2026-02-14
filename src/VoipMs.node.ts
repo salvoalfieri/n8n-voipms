@@ -1,5 +1,4 @@
-// ---------- Compatibility imports and alias ----------
-import type {
+import {
   INodeExecutionData,
   INodeType,
   INodeTypeDescription,
@@ -7,14 +6,11 @@ import type {
 } from 'n8n-workflow';
 
 /**
- * ExecuteFunctions alias
- * Use `any` here to avoid TypeScript namespace/type mismatches across n8n versions.
- * Replace `any` with the exact exported type from your installed n8n-core
- * once you pin a specific n8n version.
+ * Compatibility alias for execute function context.
+ * Using `any` avoids cross-version type mismatches while you pin a specific n8n SDK.
+ * Replace `any` with the exact exported type (e.g., NodeExecuteFunctions) once you pin n8n-core.
  */
 type ExecuteFunctions = any;
-// ----------------------------------------------------
-
 
 export class VoipMs implements INodeType {
   description: INodeTypeDescription = {
@@ -58,9 +54,7 @@ export class VoipMs implements INodeType {
             resource: ['account'],
           },
         },
-        options: [
-          { name: 'Get Balance', value: 'getBalance' },
-        ],
+        options: [{ name: 'Get Balance', value: 'getBalance' }],
         default: 'getBalance',
       },
       // DID operations
@@ -73,9 +67,7 @@ export class VoipMs implements INodeType {
             resource: ['did'],
           },
         },
-        options: [
-          { name: 'List DIDs', value: 'listDIDs' },
-        ],
+        options: [{ name: 'List DIDs', value: 'listDIDs' }],
         default: 'listDIDs',
       },
       // SMS operations
@@ -88,9 +80,7 @@ export class VoipMs implements INodeType {
             resource: ['sms'],
           },
         },
-        options: [
-          { name: 'Send SMS', value: 'sendSMS' },
-        ],
+        options: [{ name: 'Send SMS', value: 'sendSMS' }],
         default: 'sendSMS',
       },
       // SMS parameters
@@ -235,7 +225,6 @@ export class VoipMs implements INodeType {
           throw new NodeOperationError(this.getNode(), `The resource/operation combination "${resource}/${operation}" is not implemented.`);
         }
       } catch (error: any) {
-        // bubble up a helpful error
         throw new NodeOperationError(this.getNode(), `VoIP.ms API request failed: ${error.message || error}`);
       }
     }
