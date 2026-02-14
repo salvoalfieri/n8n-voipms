@@ -1,11 +1,5 @@
-// ---------- Replace the top of src/VoipMs.node.ts with this ----------
-
-/**
- * n8n SDK compatibility imports
- * Use `import type` to avoid runtime import issues and keep TS happy.
- */
-import type { NodeExecuteFunctions } from 'n8n-core';
-import {
+// ---------- Compatibility imports and alias ----------
+import type {
   INodeExecutionData,
   INodeType,
   INodeTypeDescription,
@@ -13,13 +7,13 @@ import {
 } from 'n8n-workflow';
 
 /**
- * Simple ExecuteFunctions alias:
- * Prefer the modern NodeExecuteFunctions type; fall back to `any` so the
- * package compiles across different n8n versions without complex typeof checks.
+ * ExecuteFunctions alias
+ * Use `any` here to avoid TypeScript namespace/type mismatches across n8n versions.
+ * Replace `any` with the exact exported type from your installed n8n-core
+ * once you pin a specific n8n version.
  */
-type ExecuteFunctions = NodeExecuteFunctions | any;
-
-// ---------------------------------------------------------------------
+type ExecuteFunctions = any;
+// ----------------------------------------------------
 
 
 export class VoipMs implements INodeType {
