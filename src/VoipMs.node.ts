@@ -160,7 +160,7 @@ export class VoipMs implements INodeType {
   /**
    * Helper: build base request options using credentials
    */
-  async getBaseUrlAndAuth(this: IExecuteFunctions) {
+  async getBaseUrlAndAuth(this: ExecuteFunctions) {
     const credentials = await this.getCredentials('voipMsApi') as {
       apiUsername: string;
       apiPassword: string;
@@ -180,7 +180,7 @@ export class VoipMs implements INodeType {
     return { baseUrl, auth };
   }
 
-  async execute(this: NodeExecuteFunctions): Promise<INodeExecutionData[][]> {
+  async execute(this: ExecuteFunctions): Promise<INodeExecutionData[][]> {
     const items = this.getInputData();
     const returnData: INodeExecutionData[] = [];
 
