@@ -1,12 +1,10 @@
-// ---------- Paste this at the top of src/VoipMs.node.ts ----------
+// ---------- Replace the top of src/VoipMs.node.ts with this ----------
 
 /**
- * Compatibility imports for different n8n versions.
- * Some n8n releases export IExecuteFunctions, others export NodeExecuteFunctions.
- * This alias tries to use the modern name if available, otherwise falls back to any.
+ * n8n SDK compatibility imports
+ * Use `import type` to avoid runtime import issues and keep TS happy.
  */
 import type { NodeExecuteFunctions } from 'n8n-core';
-import type { IExecuteFunctions as IExecuteFunctionsLegacy } from 'n8n-core';
 import {
   INodeExecutionData,
   INodeType,
@@ -14,28 +12,15 @@ import {
   NodeOperationError,
 } from 'n8n-workflow';
 
-// Create a single ExecuteFunctions alias that works across versions.
-type ExecuteFunctions =
-  // prefer NodeExecuteFunctions if present
-  (typeof NodeExecuteFunctions extends never ? never : NodeExecuteFunctions)
-  // otherwise try legacy name
-  | (typeof IExecuteFunctionsLegacy extends never ? never : IExecuteFunctionsLegacy)
-  // final fallback
-  | any;
+/**
+ * Simple ExecuteFunctions alias:
+ * Prefer the modern NodeExecuteFunctions type; fall back to `any` so the
+ * package compiles across different n8n versions without complex typeof checks.
+ */
+type ExecuteFunctions = NodeExecuteFunctions | any;
 
-// -----------------------------------------------------------------
+// ---------------------------------------------------------------------
 
-
-import {
-  NodeExecuteFunctions,
-} from 'n8n-core';
-
-import {
-  INodeExecutionData,
-  INodeType,
-  INodeTypeDescription,
-  NodeOperationError,
-} from 'n8n-workflow';
 
 export class VoipMs implements INodeType {
   description: INodeTypeDescription = {
