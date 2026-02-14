@@ -1,0 +1,27 @@
+{
+  "name": "n8n-nodes-voipms",
+  "version": "0.1.0",
+  "description": "n8n nodes for VoIP.ms API (example scaffold)",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepack": "npm run build"
+  },
+  "keywords": [
+    "n8n-nodes",
+    "n8n",
+    "voipms",
+    "voip"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "n8n-workflow": "^1.0.0",
+    "n8n-core": "^1.0.0"
+  }
+}
