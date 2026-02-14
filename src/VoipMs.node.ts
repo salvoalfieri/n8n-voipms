@@ -1,5 +1,5 @@
 import {
-  IExecuteFunctions,
+  NodeExecuteFunctions,
 } from 'n8n-core';
 
 import {
@@ -152,7 +152,7 @@ export class VoipMs implements INodeType {
     return { baseUrl, auth };
   }
 
-  async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
+  async execute(this: NodeExecuteFunctions): Promise<INodeExecutionData[][]> {
     const items = this.getInputData();
     const returnData: INodeExecutionData[] = [];
 
